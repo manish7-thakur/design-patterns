@@ -38,7 +38,6 @@ public class InvoiceTest {
     @Test
     public void notifyListenersWhenItemAddedToList() {
         LineItem item = new Product(23.4, "it's nice");
-        listener = Mockito.mock(ChangeListener.class);
         invoice.addListener(listener);
         invoice.addItem(item);
         Mockito.verify(listener).stateChanged(Mockito.any());
