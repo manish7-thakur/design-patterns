@@ -10,6 +10,10 @@ class SceneComponent {
         shapes = new ArrayList<>();
     }
 
+    public SceneComponent(List<SceneShape> shapes) {
+        this.shapes = shapes;
+    }
+
     public void add(SceneShape shape) {
         shapes.add(shape);
     }

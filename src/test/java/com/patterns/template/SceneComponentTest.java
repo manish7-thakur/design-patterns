@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
 
+import java.util.List;
+
 public class SceneComponentTest {
 
     SceneComponent component;
@@ -20,6 +22,13 @@ public class SceneComponentTest {
         SceneShape shape = new HouseShape();
         component.add(shape);
         Assertions.assertEquals(1, component.getShapes().size());
+    }
+
+    @Test
+    public void usesProvidedListAsSceneList() {
+        SceneShape shape = new HouseShape();
+        component = new SceneComponent(List.of(shape, shape));
+        Assertions.assertEquals(2, component.getShapes().size());
     }
 
     @Test
