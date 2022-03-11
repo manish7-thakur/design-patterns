@@ -14,8 +14,5 @@ public class SelectableShapeTest {
         InOrder inOrder = Mockito.inOrder(shape);
         inOrder.verify(shape).translate();
         inOrder.verify(shape).draw();
-        inOrder.verify(shape).translate();
-        inOrder.verify(shape).draw();
-        inOrder.verify(shape).translate();
     }
 }

@@ -5,8 +5,5 @@ abstract class SelectableShape implements SceneShape {
     public void drawSelection() {
         translate();
         draw();
-        translate();
-        draw();
-        translate();
     }
 }
