@@ -1,9 +1,9 @@
 package com.patterns.template;
 
 interface SceneShape {
-    void translate();
+    String translate();
 
     void drawSelection();
 
-    void draw();
+    String draw();
 }
