@@ -13,13 +13,14 @@ import java.io.IOException;
 public class CopyActionTest {
     @Test
     public void copiesTextToClipBoard() throws IOException, UnsupportedFlavorException {
-        Action copyAction = new CopyAction();
+        String text = "copy this shit to clipboard";
+        Action copyAction = new CopyAction(text);
         copyAction.actionPerformed(Mockito.mock(ActionEvent.class));
         Clipboard b = Toolkit.getDefaultToolkit().getSystemClipboard();
-        String text = null;
+        String copied = null;
         if (b.isDataFlavorAvailable(DataFlavor.stringFlavor)) {
-            text = (String) b.getData(DataFlavor.stringFlavor);
+            copied = (String) b.getData(DataFlavor.stringFlavor);
         }
-        Assertions.assertEquals("Copy command executed", text);
+        Assertions.assertEquals(text, copied);
     }
 }
