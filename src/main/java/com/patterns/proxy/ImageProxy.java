@@ -5,7 +5,7 @@ import java.awt.*;
 
 class ImageProxy implements Icon {
     private String name;
-    private ImageIcon iconImage;
+    private ImageIcon iconImage; //Aggregation
 
     public ImageProxy(String name) {
         this.name = name;
