@@ -22,12 +22,14 @@ class ImageProxy implements Icon {
 
     @Override
     public int getIconWidth() {
-        return 0;
+        ensureImageLoaded();
+        return iconImage.getIconWidth();
     }
 
     @Override
     public int getIconHeight() {
-        return 0;
+        ensureImageLoaded();
+        return iconImage.getIconHeight();
     }
 
     public void ensureImageLoaded() {

@@ -22,6 +22,22 @@ public class ImageProxyTest {
     }
 
     @Test
+    public void accessingHeightIconEnsuresImageLoading() {
+        var proxy = new ImageProxy("name");
+        ImageProxy proxyMock = Mockito.spy(proxy);
+        proxyMock.getIconHeight();
+        Mockito.verify(proxyMock).ensureImageLoaded();
+    }
+
+    @Test
+    public void accessingWidthIconEnsuresImageLoading() {
+        var proxy = new ImageProxy("name");
+        ImageProxy proxyMock = Mockito.spy(proxy);
+        proxyMock.getIconWidth();
+        Mockito.verify(proxyMock).ensureImageLoaded();
+    }
+
+    @Test
     public void imageLoadedBeforeUse() {
         var proxy = new ImageProxy("image");
         proxy.ensureImageLoaded();
