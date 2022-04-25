@@ -9,6 +9,7 @@ import java.awt.*;
 
 class ImageProxy implements Icon {
     private String name;
+    private ImageIcon iconImage;
 
     public ImageProxy(String name) {
         this.name = name;
@@ -33,8 +34,11 @@ class ImageProxy implements Icon {
     }
 
     public void ensureImageLoaded() {
-        System.out.println("");
+        this.iconImage = new ImageIcon(name);
+    }
 
+    public Object getImage() {
+        return iconImage;
     }
 }
 public class ImageProxyTest {
@@ -50,5 +54,12 @@ public class ImageProxyTest {
         ImageProxy proxyMock = Mockito.spy(proxy);
         proxyMock.paintIcon(Mockito.mock(Component.class), Mockito.mock(Graphics.class), 0, 1);
         Mockito.verify(proxyMock).ensureImageLoaded();
+    }
+
+    @Test
+    public void imageLoadedBeforeUse() {
+        var proxy = new ImageProxy("image");
+        proxy.ensureImageLoaded();
+        Assertions.assertNotNull(proxy.getImage());
     }
 }
