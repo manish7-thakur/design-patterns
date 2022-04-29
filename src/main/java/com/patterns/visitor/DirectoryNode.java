@@ -2,7 +2,7 @@ package com.patterns.visitor;
 
 import java.io.File;
 
-class DirectoryNode {
+class DirectoryNode implements FileSystemNode {
     private final File dir;
 
     public DirectoryNode(File dir) {
@@ -11,5 +11,10 @@ class DirectoryNode {
 
     public File getDirectory() {
         return dir;
+    }
+
+    @Override
+    public void accept(PrintVisitor visitor) {
+        visitor.visitFileNode(this);
     }
 }

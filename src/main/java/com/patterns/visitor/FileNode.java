@@ -2,7 +2,7 @@ package com.patterns.visitor;
 
 import java.io.File;
 
-class FileNode {
+class FileNode implements FileSystemNode {
     private final File file;
 
     public File getFile() {
@@ -11,5 +11,10 @@ class FileNode {
 
     public FileNode(File file) {
         this.file = file;
+    }
+
+    @Override
+    public void accept(PrintVisitor visitor) {
+        visitor.visitFileNode(this);
     }
 }
