@@ -1,4 +1,4 @@
-package com.builders;
+package com.patterns.builder;
 
 public class QuestionBuilder {
     private String description;
