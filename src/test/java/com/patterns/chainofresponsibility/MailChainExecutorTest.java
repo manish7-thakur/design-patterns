@@ -1,6 +1,7 @@
 package com.patterns.chainofresponsibility;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.InOrder;
 import org.mockito.Mockito;
 
 import java.util.List;
@@ -11,9 +12,15 @@ public class MailChainExecutorTest {
     @Test
     public void createEmailValidationChain() {
         ValidateEmailCommand emailMock = mock(ValidateEmailCommand.class);
-        MailChainExecutor executor = new MailChainExecutor(List.of(emailMock, mock(ValidateSenderCodeCommand.class), mock(ValidateReceiverCodeCommand.class)));
+        ValidateSenderCodeCommand senderCodeMock = mock(ValidateSenderCodeCommand.class);
+        ValidateReceiverCodeCommand receiverCodeMock = mock(ValidateReceiverCodeCommand.class);
+        MailChainExecutor executor = new MailChainExecutor(List.of(emailMock, senderCodeMock, receiverCodeMock));
         Request request = new Request("", "", "");
         executor.execute(request);
-        Mockito.verify(emailMock).execute(request);
+
+        InOrder inOrder = Mockito.inOrder(emailMock, senderCodeMock, receiverCodeMock);
+        inOrder.verify(emailMock).execute(request);
+        inOrder.verify(senderCodeMock).execute(request);
+        inOrder.verify(receiverCodeMock).execute(request);
     }
 }
