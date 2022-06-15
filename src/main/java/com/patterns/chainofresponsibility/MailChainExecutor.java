@@ -2,7 +2,7 @@ package com.patterns.chainofresponsibility;
 
 import java.util.List;
 
-public class MailChainExecutor {
+public class MailChainExecutor implements Command {
 
     private final List<Command> commands;
 
@@ -10,7 +10,8 @@ public class MailChainExecutor {
         this.commands = commands;
     }
 
-    public void execute(Request request) {
+    public boolean execute(Request request) {
         commands.forEach(command -> command.execute(request));
+        return false;
     }
 }
