@@ -10,6 +10,12 @@ public class ExpressionParser {
         for (String l : literals) {
             if ("+".equals(l)) {
                 list.add(new Add());
+            } else if("*".equals(l)) {
+                list.add(new Multiply());
+            } else if("/".equals(l)) {
+                list.add(new Divide());
+            } else if("-".equals(l)) {
+                list.add(new Subtract());
             } else {
                 list.add(new Operand(Integer.parseInt(l)));
             }

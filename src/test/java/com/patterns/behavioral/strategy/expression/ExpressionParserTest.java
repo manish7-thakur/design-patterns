@@ -26,5 +26,19 @@ public class ExpressionParserTest {
     public void parseToAnOperatorLiteral() {
         List<Literal> list = p.parse("+");
         Assertions.assertEquals("Add", list.get(0).getClass().getSimpleName());
+        list = p.parse("*");
+        Assertions.assertEquals("Multiply", list.get(0).getClass().getSimpleName());
+        list = p.parse("/");
+        Assertions.assertEquals("Divide", list.get(0).getClass().getSimpleName());
+        list = p.parse("-");
+        Assertions.assertEquals("Subtract", list.get(0).getClass().getSimpleName());
+    }
+
+    @Test
+    public void parseToAllLiteral() {
+        List<Literal> list = p.parse("2 + 3");
+        Assertions.assertEquals(2, ((Operand) list.get(0)).getVal());
+        Assertions.assertEquals("Add", list.get(1).getClass().getSimpleName());
+        Assertions.assertEquals(3, ((Operand) list.get(2)).getVal());
     }
 }
