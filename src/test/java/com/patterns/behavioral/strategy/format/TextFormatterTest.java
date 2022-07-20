@@ -1,4 +1,4 @@
-package com.patterns.behavioral.strategy;
+package com.patterns.behavioral.strategy.format;
 
 import com.patterns.structural.composite.LineItem;
 import com.patterns.structural.composite.Product;
@@ -15,6 +15,7 @@ public class TextFormatterTest {
     public void setUp() {
         formatter = new TextFormatter();
     }
+
     @Test
     public void formatsHeaderWithSimpleText() {
         Assertions.assertEquals("TEXT - INVOICE", formatter.getHeader());
