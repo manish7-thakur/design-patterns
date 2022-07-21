@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class MultiplyTest {
     @Test
     public void multipliesTwoOperands() {
-        Operator ops = new Multiply();
+        Operator ops = Multiply.getInstance();
         Operand opd = ops.operate(new Operand(2), new Operand(3));
         Assertions.assertEquals(6, opd.getVal());
     }

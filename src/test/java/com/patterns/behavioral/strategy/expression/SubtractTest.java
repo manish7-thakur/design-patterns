@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class SubtractTest {
     @Test
     public void subtractsTwoOperands() {
-        Operator ops = new Subtract();
+        Operator ops = Subtract.getInstance();
         Operand operand = ops.operate(new Operand(2), new Operand(3));
         Assertions.assertEquals(-1, operand.getVal());
     }

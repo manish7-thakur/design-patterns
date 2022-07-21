@@ -12,7 +12,7 @@ public class ExpressionTest {
         Expression exp = new Expression(List.of(new Operand(6), Add.getInstance(), new Operand(7)));
         Assertions.assertEquals("6+7", exp.toString());
 
-        exp = new Expression(List.of(new Operand(6), new Multiply(), new Operand(7), Divide.getInstance(), new Operand(3), new Subtract(), new Operand(8)));
+        exp = new Expression(List.of(new Operand(6), Multiply.getInstance(), new Operand(7), Divide.getInstance(), new Operand(3), Subtract.getInstance(), new Operand(8)));
         Assertions.assertEquals("6*7/3-8", exp.toString());
     }
 

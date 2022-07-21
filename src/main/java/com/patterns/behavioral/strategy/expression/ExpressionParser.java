@@ -14,12 +14,12 @@ public class ExpressionParser {
                 while (!stack.isEmpty() && prec(l) < prec(stack.peek().toString())) list.add(stack.pop());
                 stack.push(Add.getInstance());
             } else if ("*".equals(l)) {
-                stack.push(new Multiply());
+                stack.push(Multiply.getInstance());
             } else if ("/".equals(l)) {
                 stack.push(Divide.getInstance());
             } else if ("-".equals(l)) {
                 while (!stack.isEmpty() && prec(l) < prec(stack.peek().toString())) list.add(stack.pop());
-                stack.push(new Subtract());
+                stack.push(Subtract.getInstance());
             } else {
                 list.add(new Operand(Integer.parseInt(l)));
             }
