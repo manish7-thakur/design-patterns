@@ -38,5 +38,7 @@ public class ExpressionParserTest {
     public void parseToPostFixExpression() {
         Expression exp = new Expression(p.parse("2 + 3"));
         Assertions.assertEquals("23+", exp.toString());
+        exp = new Expression(p.parse("2 * 3 + 5"));
+        Assertions.assertEquals("23*5+", exp.toString());
     }
 }
