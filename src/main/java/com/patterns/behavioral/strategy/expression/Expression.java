@@ -21,7 +21,8 @@ public class Expression {
         return acc;
     }
 
-    public String asString() {
+    @Override
+    public String toString() {
         StringBuilder b = new StringBuilder();
         for(Literal l : literals) {
             b.append(l.toString());
