@@ -35,10 +35,10 @@ public class ExpressionParserTest {
     }
 
     @Test
-    public void parseToAllLiteral() {
+    public void parseToPostFixExpression() {
         List<Literal> list = p.parse("2 + 3");
         Assertions.assertEquals(2, ((Operand) list.get(0)).getVal());
-        Assertions.assertEquals("Add", list.get(1).getClass().getSimpleName());
-        Assertions.assertEquals(3, ((Operand) list.get(2)).getVal());
+        Assertions.assertEquals(3, ((Operand) list.get(1)).getVal());
+        Assertions.assertEquals("Add", list.get(2).getClass().getSimpleName());
     }
 }

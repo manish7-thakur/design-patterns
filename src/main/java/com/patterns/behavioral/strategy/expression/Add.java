@@ -1,6 +1,6 @@
 package com.patterns.behavioral.strategy.expression;
 
-public class Add implements Literal, Operator {
+public class Add implements Operator {
 
     @Override
     public Operand operate(Operand op1, Operand op2) {
