@@ -9,10 +9,10 @@ public class ExpressionTest {
 
     @Test
     public void representsExpAsString() {
-        Expression exp = new Expression(List.of(new Operand(6), new Add(), new Operand(7)));
+        Expression exp = new Expression(List.of(new Operand(6), Add.getInstance(), new Operand(7)));
         Assertions.assertEquals("6+7", exp.toString());
 
-        exp = new Expression(List.of(new Operand(6), new Multiply(), new Operand(7), new Divide(), new Operand(3), new Subtract(), new Operand(8)));
+        exp = new Expression(List.of(new Operand(6), new Multiply(), new Operand(7), Divide.getInstance(), new Operand(3), new Subtract(), new Operand(8)));
         Assertions.assertEquals("6*7/3-8", exp.toString());
     }
 
@@ -21,7 +21,7 @@ public class ExpressionTest {
         Expression exp = new Expression(List.of(new Operand(4)));
         Assertions.assertEquals(4, exp.eval().getVal());
 
-        exp = new Expression(List.of(new Operand(4), new Add(), new Operand(3)));
+        exp = new Expression(List.of(new Operand(4), Add.getInstance(), new Operand(3)));
         Assertions.assertEquals(7, exp.eval().getVal());
 
 //        exp = new Expression(List.of(new Operand(4), new Add(), new Operand(3), new Multiply(), new Operand(2)));

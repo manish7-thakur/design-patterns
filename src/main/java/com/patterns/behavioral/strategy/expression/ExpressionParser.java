@@ -12,11 +12,11 @@ public class ExpressionParser {
         for (String l : literals) {
             if ("+".equals(l)) {
                 while (!stack.isEmpty() && prec(l) < prec(stack.peek().toString())) list.add(stack.pop());
-                stack.push(new Add());
+                stack.push(Add.getInstance());
             } else if ("*".equals(l)) {
                 stack.push(new Multiply());
             } else if ("/".equals(l)) {
-                stack.push(new Divide());
+                stack.push(Divide.getInstance());
             } else if ("-".equals(l)) {
                 while (!stack.isEmpty() && prec(l) < prec(stack.peek().toString())) list.add(stack.pop());
                 stack.push(new Subtract());

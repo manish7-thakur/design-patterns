@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class DivideTest {
     @Test
     public void dividesTwoOperands() {
-        Operator ops = new Divide();
+        Operator ops = Divide.getInstance();
         Operand opd = ops.operate(new Operand(2), new Operand(2));
         Assertions.assertEquals(1, opd.getVal());
     }
