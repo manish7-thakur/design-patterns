@@ -14,8 +14,7 @@ public class Expression {
     public Operand eval() {
         Stack<Operand> stack = new Stack<>();
         for(Literal l : literals) {
-            if(l instanceof Operator) {
-                Operator operator = (Operator) l;
+            if(l instanceof Operator operator) {
                 Operand op2 = stack.pop();
                 Operand op1 = stack.pop();
                 Operand res = operator.operate(op1, op2);

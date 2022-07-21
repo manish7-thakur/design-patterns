@@ -10,18 +10,18 @@ public class ExpressionParser {
         Stack<Operator> stack = new Stack<>();
         List<Literal> list = new ArrayList<>(literals.length);
         for (String l : literals) {
-            if ("+".equals(l)) {
-                while (!stack.isEmpty() && prec(l) < prec(stack.peek().toString())) list.add(stack.pop());
-                stack.push(Add.getInstance());
-            } else if ("*".equals(l)) {
-                stack.push(Multiply.getInstance());
-            } else if ("/".equals(l)) {
-                stack.push(Divide.getInstance());
-            } else if ("-".equals(l)) {
-                while (!stack.isEmpty() && prec(l) < prec(stack.peek().toString())) list.add(stack.pop());
-                stack.push(Subtract.getInstance());
-            } else {
-                list.add(new Operand(Integer.parseInt(l)));
+            switch (l) {
+                case "+" -> {
+                    while (!stack.isEmpty() && prec(l) < prec(stack.peek().toString())) list.add(stack.pop());
+                    stack.push(Add.getInstance());
+                }
+                case "*" -> stack.push(Multiply.getInstance());
+                case "/" -> stack.push(Divide.getInstance());
+                case "-" -> {
+                    while (!stack.isEmpty() && prec(l) < prec(stack.peek().toString())) list.add(stack.pop());
+                    stack.push(Subtract.getInstance());
+                }
+                default -> list.add(new Operand(Integer.parseInt(l)));
             }
         }
         while (!stack.isEmpty()) list.add(stack.pop());
