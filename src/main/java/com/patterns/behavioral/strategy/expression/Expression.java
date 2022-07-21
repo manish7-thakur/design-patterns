@@ -20,4 +20,12 @@ public class Expression {
         }
         return acc;
     }
+
+    public String asString() {
+        StringBuilder b = new StringBuilder();
+        for(Literal l : literals) {
+            b.append(l.toString());
+        }
+        return b.toString();
+    }
 }

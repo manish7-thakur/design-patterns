@@ -10,4 +10,9 @@ public class Operand implements Literal {
     public int getVal() {
         return val;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(val);
+    }
 }
