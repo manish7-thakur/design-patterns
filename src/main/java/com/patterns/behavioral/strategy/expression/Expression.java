@@ -2,6 +2,7 @@ package com.patterns.behavioral.strategy.expression;
 
 
 import java.util.List;
+import java.util.Stack;
 
 public class Expression {
     private List<Literal> literals;
@@ -11,14 +12,17 @@ public class Expression {
     }
 
     public Operand eval() {
-        Operand acc = (Operand) literals.get(0);
-        for (int i = 1; i < literals.size(); i++) {
-            if (literals.get(i) instanceof Operator) {
-                Operator op = (Operator) literals.get(i);
-                acc = op.operate(acc, (Operand) literals.get(++i));
-            }
+        Stack<Operand> stack = new Stack<>();
+        for(Literal l : literals) {
+            if(l instanceof Operator) {
+                Operator operator = (Operator) l;
+                Operand op2 = stack.pop();
+                Operand op1 = stack.pop();
+                Operand res = operator.operate(op1, op2);
+                stack.push(res);
+            } else stack.push((Operand) l);
         }
-        return acc;
+        return stack.pop();
     }
 
     @Override

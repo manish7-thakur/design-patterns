@@ -18,13 +18,20 @@ public class ExpressionTest {
 
     @Test
     public void evaluatesExpressionValue() {
-        Expression exp = new Expression(List.of(new Operand(4)));
-        Assertions.assertEquals(4, exp.eval().getVal());
+        ExpressionParser parse = new ExpressionParser();
+        Expression exp = new Expression(parse.parse("2 + 4"));
+        Assertions.assertEquals(6, exp.eval().getVal());
 
-        exp = new Expression(List.of(new Operand(4), Add.getInstance(), new Operand(3)));
+        exp = new Expression(parse.parse("2 * 3 + 5"));
+        Assertions.assertEquals(11, exp.eval().getVal());
+
+        exp = new Expression(parse.parse("2 / 3 + 5"));
+        Assertions.assertEquals(5, exp.eval().getVal());
+
+        exp = new Expression(parse.parse("2 * 3 / 5 - 8"));
+        Assertions.assertEquals(-8, exp.eval().getVal());
+
+        exp = new Expression(parse.parse("2 / 3 * 5 + 8 + 3 - 4"));
         Assertions.assertEquals(7, exp.eval().getVal());
-
-//        exp = new Expression(List.of(new Operand(4), new Add(), new Operand(3), new Multiply(), new Operand(2)));
-//        Assertions.assertEquals(10, exp.eval().getVal());
     }
 }
