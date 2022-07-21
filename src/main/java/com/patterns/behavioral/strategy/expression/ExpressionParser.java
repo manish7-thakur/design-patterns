@@ -11,13 +11,14 @@ public class ExpressionParser {
         List<Literal> list = new ArrayList<>(literals.length);
         for (String l : literals) {
             if ("+".equals(l)) {
-                if (!stack.isEmpty() && prec(l) < prec(stack.peek().toString())) list.add(stack.pop());
+                while (!stack.isEmpty() && prec(l) < prec(stack.peek().toString())) list.add(stack.pop());
                 stack.push(new Add());
             } else if ("*".equals(l)) {
                 stack.push(new Multiply());
             } else if ("/".equals(l)) {
                 stack.push(new Divide());
             } else if ("-".equals(l)) {
+                while (!stack.isEmpty() && prec(l) < prec(stack.peek().toString())) list.add(stack.pop());
                 stack.push(new Subtract());
             } else {
                 list.add(new Operand(Integer.parseInt(l)));
@@ -28,8 +29,8 @@ public class ExpressionParser {
     }
 
     private int prec(String l) {
-        if (l.equals("*")) return 2;
-        if (l.equals("+")) return 1;
+        if (l.equals("*") || l.equals("/")) return 2;
+        if (l.equals("+") || l.equals("-")) return 1;
         return 0;
     }
 }

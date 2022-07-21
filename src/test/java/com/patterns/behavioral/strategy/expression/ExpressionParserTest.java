@@ -40,5 +40,13 @@ public class ExpressionParserTest {
         Assertions.assertEquals("23+", exp.toString());
         exp = new Expression(p.parse("2 * 3 + 5"));
         Assertions.assertEquals("23*5+", exp.toString());
+        exp = new Expression(p.parse("2 / 3 + 5"));
+        Assertions.assertEquals("23/5+", exp.toString());
+        exp = new Expression(p.parse("2 / 3 - 5"));
+        Assertions.assertEquals("23/5-", exp.toString());
+        exp = new Expression(p.parse("2 * 3 / 5 - 8"));
+        Assertions.assertEquals("235/*8-", exp.toString());
+        exp = new Expression(p.parse("2 / 3 * 5 + 8"));
+        Assertions.assertEquals("235*/8+", exp.toString());
     }
 }
